@@ -36,8 +36,8 @@ const getButton = document.querySelector(".get-image");
 const imageURL = "https://cataas.com/cat?json=true";
 let imgSrc = "";
 let img;
-const canvasSize = 500;
-const extraCanvasHeight = 100;
+let canvasSize = min(window.innerWidth / 3, window.innerHeight / 1.5);
+let extraCanvasHeight = canvasSize / 5;
 function setup() {
   createCanvas(canvasSize, canvasSize + extraCanvasHeight);
   getImage();
@@ -86,5 +86,12 @@ function getImage() {
       img = loadImage(imgSrc);
     });
   textAreas = [];
+}
+
+function min(n1, n2) {
+  if (n1 < n2) {
+    return n1;
+  }
+  return n2;
 }
 getButton.addEventListener("click", getImage);
